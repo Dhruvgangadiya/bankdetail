@@ -6,58 +6,152 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <form id="myForm" onsubmit="return saveData()">
+        <div class="form">
+
+            <div class="title">Welcome</div>
+
+            <div class="subtitle">Let's create your bank account!</div>
+            
+            <div class="input-container m-4 ">
+                <input id="product_id" class="input" type="text" />
+                <div class="cut"></div>
+                <label for="firstname" class="placeholder">First name</label>
+            </div>
+            <div class="input-container m-3">
+                <input id="order_id" class="input" type="text" />
+                <div class="cut"></div>
+                <label for="lastname" class="placeholder">Last name</label>
+            </div>
+            <div class="input-container m-3">
+                <input id="product" class="input" type="number" />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">Age</label>
+            </div>
+            <div class="input-container m-3">
+                <input id="qut" class="input" type="email" />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">E-mail</label>
+            </div>
+            <div class="input-container m-3">
+                <input id="price" class="input" type="number" />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">Number</label>
+            </div>
+            <span>*Opening balance information*</span>
+            <div class="input-container m-3">
+                <input id="price" class="input" type="number" />
+                <div class="cut cut-short"></div>
+                <label for="email" class="placeholder">Balance</label>
+            </div>
+            <input type="submit" class="submit" target="new" value="Save" />
+        </div>
+    </form>
+
+    <table id="myForm" onsubmit="return productData()">
+        <thead id="data">
+
+        </thead>
+        <tbody id="data_body">
+         
+        </tbody>
+    </table>
+
+
     <script>
-        class Person{
-            constructor(f_name,l_name,age,e_mail,number){
+        /*Form code*/
+        var product = [
+        ]
+        function displayData() {
+            var data_body_html = document.getElementById('data_body');
+            var row = "";
+            for (var index in product) {
+                var a = product[index];
+                row += "<section><span>Bank information</span> <h2>First Name : " + a.product_id + "</h2>  <h2>Last Name : " + a.order_id + "</h2> <h2>Age : " + a.product + "</h2> <h2>E mail : " + a.qut + "</h2> <h2>Mobile number : " + a.price + "</h2></section>";
+            }
+            data_body_html.innerHTML = row;
+        }
+        displayData();
+        function saveData() {
+            var form_myForm_html = document.getElementById('myForm');
+
+            var form_product_id_html = document.getElementById('product_id');
+            var form_order_id_html = document.getElementById('order_id');
+            var form_product_html = document.getElementById('product');
+            var form_qut_html = document.getElementById('qut');
+            var form_price = document.getElementById('price');
+
+
+
+            var b = {};
+
+            b.product_id = form_product_id_html.value;
+            b.order_id = form_order_id_html.value;
+            b.product = form_product_html.value;
+            b.qut = form_qut_html.value;
+            b.price = form_price.value;
+
+
+            console.log(b);
+            product.push(b)
+            console.log(product);
+            displayData();
+            form_myForm_html.reset();
+            return false;
+        }
+        /*Form code End*/
+        class Person {
+            constructor(f_name, l_name, age, e_mail, number) {
                 this.first_name = f_name;
                 this.last_name = l_name;
                 this.age = age;
                 this.e_mail = e_mail;
                 this.number = number;
             }
-            showPersoninfo(){
-                console.log("Full name :-",first_name+""+this.last_name);
-                console.log("E-mail :-",this.age);
-                console.log("E-mail :-",this.e_mail);
-                console.log("Mobile Number :-",this.number);
+            showPersoninfo() {
+                console.log("Full name :-", this.first_name + "" + this.last_name);
+                console.log("E-mail :-", this.age);
+                console.log("E-mail :-", this.e_mail);
+                console.log("Mobile Number :-", this.number);
             }
         }
 
-         class Bank extends Person{
-           constructor(f_name,l_name,age,e_mail,number,amount){
-            super(f_name,l_name,age,e_mail,number);
-            this.amount = amount;
-           }
-          
-           Withdraw(amount){
-               if(amount > this.amount){
+        class Bank extends Person {
+            constructor(f_name, l_name, age, e_mail, number, amount) {
+                super(f_name, l_name, age, e_mail, number);
+                this.amount = amount;
+            }
+
+            Withdraw(amount) {
+                if (amount > this.amount) {
                     alert("inefficient Balance");
                     return;
-               }
-               this.amount -= amount;
-           }
-           Credit(amount){
-            this.amount += amount;
-           }
-           showAmount(){
-            console.log("Balance :-",this.amount);
-           }
-           showUserinfo(){
-            this.showPersoninfo();
-            console.log(this.amount);
-           }
-         } 
-       
-         var bank = new Bank ("Dhruv","gangadiya","18","gangadiyadhruv@gmail.com","9054563636","1800");
+                }
+                this.amount -= amount;
+            }
+            Credit(amount) {
+                this.amount += amount;
+            }
+            showAmount() {
+                console.log("Balance :-", this.amount);
+            }
+            showUserinfo() {
+                this.showPersoninfo();
+                console.log(this.amount);
+            }
+        }
 
-         bank.showUserinfo();
-         bank.Withdraw(20);
-         bank.showAmount();
-         bank.Credit(500);
-         bank.showAmount();
+        var bank = new Bank("Dhruv", "gangadiya", "18", "gangadiyadhruv@gmail.com", "9054563636", "18000");
+
+        bank.showUserinfo();
+        bank.Withdraw(20);
+        bank.showAmount();
+        bank.Credit(500);
+        bank.showAmount();
 
     </script>
 </body>
