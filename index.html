@@ -10,23 +10,7 @@
 
 <body>
     <script>
-        // class Person{
-        //     constructor(f_name, l_name, gr_id, email, number) {
-        //         this.first_name = f_name;
-        //         this.last_name = l_name;
-        //         this.Grid = gr_id;
-        //         this.Email = email;
-        //         this.Number = number;
-        //     }
-        //     fullname() {
-        //         return `${this.first_name} ${this.last_name} ${this.Grid} ${this.Email} ${this.Number}`;
-        //     }
-        // }
-        // var person = new Person("Dhruv<br/>", "gangadiya<br/>", "6383<br/>", "gangadiyadhruv@gmail.com<br/>", "9054563636<br/>");
-        // document.write(person.fullname());
-        // document.write("<br/>")
-
-        class Person {
+        class Person{
             constructor(f_name,l_name,age,e_mail,number){
                 this.first_name = f_name;
                 this.last_name = l_name;
@@ -34,34 +18,40 @@
                 this.e_mail = e_mail;
                 this.number = number;
             }
-            fullname(){
-                return `${this.first_name} ${this.last_name}`
-            }
-            extra(){
-                return `${this.age} <br/> ${this.e_mail} <br/>${this.number}`
+            showPersoninfo(){
+                console.log("Full name :-",first_name+""+this.last_name);
+                console.log("E-mail :-",this.age);
+                console.log("E-mail :-",this.e_mail);
+                console.log("Mobile Number :-",this.number);
             }
         }
-         class bank{
-           constructor(b_balance){
-            this.bank_balance = b_balance;
+
+         class bank extends Person{
+           constructor(f_name,l_name,age,e_mail,number,amount){
+            super(f_name,l_name,age,e_mail,number);
+            this.amount = amount;
            }
-           setBalance(b_balance){
-            return `${this.bank_balance}`;
+          
+           setWithdraw(amount){
+               if(amount > this.amount){
+                    alert("inefficient Balance");
+                    return;
+               }
+               this.amount -= amount;
            }
-           setWithdraw(withdraw){
-                return`<button>Withdraw</button>`;
+           setCredit(amount){
+            this.amount += amount;
            }
-           setCredit(credit){
-            return`<button>Credit</button>`;
+           setBalance(){
+            console.log("Balance :-",this.amount);
+           }
+           showPersoninfo(){
+            this.showpersoninfo();
+            console.log(this.amount);
            }
          } 
-        var person = new Person("Dhruv","gangadiya","18","gangadiyadhruv@gmail.com","9054563636");
-        document.write(person.fullname(),"<br/>",person.extra());
-        var Bank = new bank("1900");
-        document.write("<br/>Bank balance :-",Bank.setBalance());
-        var withdraw = new bank();
-        document.write("<br/>",withdraw.setWithdraw());
-        document.write("<br/>",withdraw.setCredit());
+       
+         var bank = new 
     </script>
 </body>
 
