@@ -26,32 +26,39 @@
             }
         }
 
-         class bank extends Person{
+         class Bank extends Person{
            constructor(f_name,l_name,age,e_mail,number,amount){
             super(f_name,l_name,age,e_mail,number);
             this.amount = amount;
            }
           
-           setWithdraw(amount){
+           Withdraw(amount){
                if(amount > this.amount){
                     alert("inefficient Balance");
                     return;
                }
                this.amount -= amount;
            }
-           setCredit(amount){
+           Credit(amount){
             this.amount += amount;
            }
-           setBalance(){
+           showAmount(){
             console.log("Balance :-",this.amount);
            }
-           showPersoninfo(){
-            this.showpersoninfo();
+           showUserinfo(){
+            this.showPersoninfo();
             console.log(this.amount);
            }
          } 
        
-         var bank = new 
+         var bank = new Bank ("Dhruv","gangadiya","18","gangadiyadhruv@gmail.com","9054563636","1800");
+
+         bank.showUserinfo();
+         bank.Withdraw(20);
+         bank.showAmount();
+         bank.Credit(500);
+         bank.showAmount();
+
     </script>
 </body>
 
